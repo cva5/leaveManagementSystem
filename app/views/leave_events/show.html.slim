@@ -1,0 +1,28 @@
+.col-md-12
+  .content-box-header
+    .panel-title Leave Details
+  .content-box-large.box-with-header
+    = t_a 'leave_event.start_time'
+    | ：
+    = @leave_event.start_time
+    br/
+    = t_a 'leave_event.end_time'
+    |：
+    = @leave_event.end_time
+    br/
+    = t_a 'leave_event.hours'
+    |：
+    = @leave_event.hours
+    br/
+    = t_a 'leave_event.description'
+    |：
+    = @leave_event.description
+    br/
+    = t_a 'leave_event.leave_type'
+    | ：
+    = t_option_str('leave_type', @leave_event.leave_type)
+    br/
+    - if can? :read, current_user
+      - if @leave_event.can_verify?
+        = link_to 'Accept', verify_leave_event_path, method: :post, class: 'btn btn-success', data: { confirm: "Are you sure?"}
+        = link_to 'Reject', reject_leave_event_path, method: :post, class: 'btn btn-danger', data: { confirm: "Are you sure to Reject?"}

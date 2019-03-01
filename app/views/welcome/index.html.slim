@@ -1,0 +1,42 @@
+.col-md-12
+  .content-box-header
+    .panel-title
+  .content-box-large.box-with-header
+    | ROLE：
+    = current_user.role
+.col-md-12
+  .content-box-header
+    .panel-title
+  .content-box-large.box-with-header
+    table.table.table-striped
+      thead
+        tr
+          th LEAVE
+          th LEAVE TYPE
+          th LEAVE STATUS
+      tbody
+        - @pending_events.each do |p|
+          tr
+            td= link_to p.token, leave_event_path(p.token)
+            td= t_option_str('leave_type', p.leave_type)
+            td= t_option_str('leave_status', p.status)
+.col-md-12
+  .content-box-header
+    .panel-title
+  .content-box-large.box-with-header
+    table.table.table-striped
+      thead
+        tr
+          th LEAVE DETAILS
+          th LEAVE TYPE
+          th LEAVE STATUS
+      tbody
+        - @completed_events.each do |p|
+          tr
+            td= link_to p.token, leave_event_path(p.token)
+            td= t_option_str('leave_type', p.leave_type)
+            td= t_option_str('leave_status', p.status)
+.col-md-12
+  .content-box-header
+    .panel-title
+  .content-box-large.box-with-header

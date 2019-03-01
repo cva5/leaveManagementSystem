@@ -1,0 +1,21 @@
+.col-md-12
+  .new-leave.pull-right
+    = link_to 'NEW LEAVE', new_leave_event_path, class: 'btn btn-info', role: 'button'
+
+br
+.col-md-12
+  .content-box-header
+    .panel-title List Of Leaves
+  .content-box-large.box-with-header
+    table.table.table-hover
+      thead
+        tr
+          td S.no
+          td Status
+          td Type
+      tbody
+        - current_user.leave_events.each do |leave_event|
+          tr
+            td= link_to leave_event.token, leave_event_path(leave_event.token)
+            td= t_option_str('leave_status', leave_event.status)
+            td= t_option_str('leave_type', leave_event.leave_type)

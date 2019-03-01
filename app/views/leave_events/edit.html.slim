@@ -1,0 +1,16 @@
+.col-md-12
+  .content-box-header
+    .panel-title Apply Leave
+  .content-box-large.box-with-header
+    = simple_form_for @leave_event do |f|
+      .row
+        .col-md-6
+          = f.input :start_time, require: :true, as: :string, input_html: {class: "datepicker"}
+        .col-md-6
+          = f.input :end_time, require: :true, as: :string, input_html: {class: "datepicker"}
+        .col-md-6
+          = f.input :description, require: :true
+        .col-md-6
+          = f.input :leave_type, require: :true, collection: LeaveEvent::BASIC_TYPES, include_blank: false
+        .col-md-12
+          = f.button :submit
